@@ -19,12 +19,33 @@ burger.addEventListener('click', () => {
 });
 $$('#nav a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }));
 
-/* hero slideshow */
+/* hero: video (telefon/masaüstü ayrı) ya da fotoğraf geçişi */
+const hv = $('#heroVid');
+if (hv) {
+  const mob = matchMedia('(max-width: 700px)');
+  const pick = () => {
+    const src = mob.matches ? hv.dataset.m : hv.dataset.d, poster = mob.matches ? hv.dataset.mp : hv.dataset.dp;
+    if (poster) hv.poster = poster;
+    if (reduce) return;
+    if (hv.getAttribute('src') !== src) { hv.src = src; hv.play().catch(() => {}); }
+  };
+  pick(); mob.addEventListener?.('change', pick);
+}
 const slides = $$('#heroBg img');
 if (slides.length > 1 && !reduce) {
   let i = 0;
   setInterval(() => { slides[i].classList.remove('on'); i = (i + 1) % slides.length; slides[i].classList.add('on'); }, 6000);
 }
+
+/* stüdyo klipleri: görününce oynat */
+const clips = $$('.clip video');
+if (clips.length && 'IntersectionObserver' in window && !reduce) {
+  const cio = new IntersectionObserver(es => es.forEach(x => {
+    const v = x.target;
+    if (x.isIntersecting) { if (!v.getAttribute('src')) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
+  }), {threshold: .35});
+  clips.forEach(v => cio.observe(v));
+} else clips.forEach(v => { v.src = v.dataset.src; v.controls = true; });
 
 /* dialogs */
 const openDlg = d => { if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', ''); };
