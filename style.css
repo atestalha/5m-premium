@@ -272,6 +272,8 @@ a.c-card:hover{border-color:var(--red);transform:translateX(3px)}
 }
 @media (max-width:600px){
   .hide-m{display:none}
+  .top-cta{margin-left:auto}
+  .burger{margin-right:-8px}
   .top-in{padding:12px 18px}
   .brand img{height:22px}
   .hero{display:block;min-height:0;background:#000}
@@ -321,11 +323,10 @@ a.c-card:hover{border-color:var(--red);transform:translateX(3px)}
   .f-grid{grid-template-columns:minmax(0,1fr)}
   .foot a{padding:9px 0}
   .map{height:320px}
-  body{padding-bottom:64px}
-  .float{left:0;right:0;bottom:0;flex-direction:row;gap:0}
-  .float a{flex:1;width:auto;height:60px;border-radius:0;display:flex;gap:10px;align-items:center;justify-content:center;font-weight:600;box-shadow:none}
-  .float span{display:inline}
-  .float .ic{width:22px;height:22px}
+  .float{right:14px;bottom:16px}
+  .fl-tel{display:none!important}
+  .float a{width:52px;height:52px}
+  .float .ic{width:26px;height:26px}
   .lb-track{height:72svh}
   .lineage{flex-direction:column;align-items:flex-start;gap:10px}
   .lineage img{height:28px}
